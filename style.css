@@ -2,16 +2,16 @@
    RESET & CSS VARIABLES
 ════════════════════════════════════════ */
 :root {
-  --deep-teal:  #00506E;
-  --mid-teal:   #007BA8;
-  --light-teal: #5BB8D4;
+  --deep-teal:  #00384D;
+  --mid-teal:   #005A7A;
+  --light-teal: #409FBE;
   --pale-teal:  #C8ECF5;
   --white:      #FFFFFF;
   --ivory:      #F5F1EC;
-  --gold:       #C9A84C;
-  --gold-light: #E8C97A;
-  --text-dark:  #1A2E38;
-  --text-mid:   #2C4E60;
+  --gold:       #B5953F;
+  --gold-light: #D8B966;
+  --text-dark:  #0B151A;
+  --text-mid:   #162831;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -340,13 +340,13 @@ body {
 .honoree-name em { color: var(--mid-teal); font-style: italic; font-weight: 400; font-size: 1.1rem; }
 
 .detail-line {
-  font-size: 0.95rem;
+  font-size: 0.95rem; font-weight: 500;
   color: var(--text-mid); margin-bottom: 4px;
 }
 .detail-line strong { color: var(--deep-teal); font-weight: 600; }
 
 .invite-text {
-  font-size: 0.95rem;
+  font-size: 0.95rem; font-weight: 500;
   line-height: 1.6; color: var(--text-mid);
   margin-top: 18px;
   border-top: 1px solid rgba(0,123,168,0.12); padding-top: 16px;
@@ -474,7 +474,7 @@ body {
   border-radius: 18px; padding: 30px 32px;
 }
 .wish-intro {
-  font-size: 0.95rem;
+  font-size: 0.95rem; font-weight: 500;
   color: var(--text-mid);
   margin-bottom: 22px; line-height: 1.6; text-align: center;
 }
