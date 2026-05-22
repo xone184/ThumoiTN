@@ -540,20 +540,95 @@ body {
   color: var(--mid-teal); margin-top: 6px; font-style: normal;
 }
 
-/* Wishes list */
-.wishes-list { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
-.wish-card {
-  background: white; border: 1px solid rgba(0,123,168,0.1);
-  border-radius: 12px; padding: 14px 18px;
-  animation: slideIn 0.45s ease both;
+/* Wishes list (hidden — wishes now float globally on the page) */
+.wishes-list { display: none; }
+
+/* ── FLOATING WISHES LAYER ── */
+.floating-wishes-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
 }
-.wish-card-name {
-  font-family: 'Montserrat', sans-serif; font-size: 0.67rem;
-  font-weight: 600; color: var(--mid-teal); letter-spacing: 0.06em; margin-bottom: 4px;
+
+.floating-wish {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 123, 168, 0.12);
+  border-radius: 14px;
+  padding: 12px 16px;
+  max-width: 210px;
+  min-width: 130px;
+  box-shadow: 0 4px 18px rgba(0, 80, 110, 0.08);
+  pointer-events: auto;
+  cursor: default;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
 }
-.wish-card-msg {
-  font-size: 0.95rem;
-  font-style: italic; color: var(--text-mid); line-height: 1.5;
+.floating-wish:hover {
+  transform: scale(1.08) !important;
+  box-shadow: 0 10px 36px rgba(0, 80, 110, 0.18);
+  opacity: 1 !important;
+  z-index: 100;
+  animation-play-state: paused !important;
+}
+/* User-submitted wish highlight */
+.floating-wish--user {
+  border: 1.5px solid rgba(201, 168, 76, 0.4);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 24px rgba(201, 168, 76, 0.15);
+}
+
+.floating-wish-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--mid-teal);
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+.floating-wish-msg {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-mid);
+  line-height: 1.4;
+}
+
+/* ── Drift keyframes — 5 unique paths (reduced horizontal drift) ── */
+@keyframes wishDrift1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20%  { transform: translate(7.5px, -30px) rotate(1deg); }
+  40%  { transform: translate(-5px, -12px) rotate(-0.5deg); }
+  60%  { transform: translate(10px, 8px) rotate(1deg); }
+  80%  { transform: translate(-2.5px, -22px) rotate(-0.3deg); }
+}
+@keyframes wishDrift2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(-9px, -20px) rotate(-1deg); }
+  50%  { transform: translate(6px, -35px) rotate(0.8deg); }
+  75%  { transform: translate(-4px, 5px) rotate(-0.5deg); }
+}
+@keyframes wishDrift3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  15%  { transform: translate(10px, -40px) rotate(0.5deg); }
+  35%  { transform: translate(-15px, -10px) rotate(-0.8deg); }
+  55%  { transform: translate(18px, -25px) rotate(1deg); }
+  75%  { transform: translate(-10px, 3px) rotate(-0.3deg); }
+}
+@keyframes wishDrift4 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30%  { transform: translate(-12px, -28px) rotate(-0.8deg); }
+  60%  { transform: translate(22px, -8px) rotate(1deg); }
+  85%  { transform: translate(-5px, -18px) rotate(-0.5deg); }
+}
+@keyframes wishDrift5 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20%  { transform: translate(22px, -15px) rotate(1deg); }
+  45%  { transform: translate(-12px, -38px) rotate(-0.8deg); }
+  70%  { transform: translate(15px, 5px) rotate(0.5deg); }
+  90%  { transform: translate(-18px, -10px) rotate(-0.3deg); }
 }
 
 /* ════════════════════════════════════════
@@ -659,6 +734,7 @@ body {
   .footer-strip         { flex-direction: column; gap: 10px; text-align: center; padding: 20px 24px; }
   .ty-modal-card        { padding: 36px 24px 28px; margin: 16px; }
   .ty-title             { font-size: 1.4rem; }
+  .floating-wishes-layer { display: none; }
 }
 
 /* ════════════════════════════════════════

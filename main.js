@@ -56,6 +56,9 @@ function openEnvelope() {
 
     // Start scroll-reveal after page fades in
     setTimeout(initReveal, 200);
+
+    // Launch floating wishes after a short delay
+    setTimeout(initFloatingWishes, 1000);
   }, 1400);
 }
 
@@ -141,13 +144,13 @@ function sendToSheet(data) {
 const wishes = [];
 
 function submitWish() {
-  const nameEl     = document.getElementById('wishName');
+  const nameEl = document.getElementById('wishName');
   const relationEl = document.getElementById('wishRelation');
-  const msgEl      = document.getElementById('wishMsg');
+  const msgEl = document.getElementById('wishMsg');
 
-  const name     = nameEl.value.trim();
+  const name = nameEl.value.trim();
   const relation = relationEl.value.trim();
-  const msg      = msgEl.value.trim();
+  const msg = msgEl.value.trim();
 
   // Validation
   if (!name || !msg) {
@@ -156,11 +159,11 @@ function submitWish() {
     setTimeout(() => (btn.style.animation = ''), 400);
 
     if (!name) nameEl.style.borderColor = '#e05b5b';
-    if (!msg)  msgEl.style.borderColor  = '#e05b5b';
+    if (!msg) msgEl.style.borderColor = '#e05b5b';
 
     setTimeout(() => {
       nameEl.style.borderColor = '';
-      msgEl.style.borderColor  = '';
+      msgEl.style.borderColor = '';
     }, 1200);
     return;
   }
@@ -178,29 +181,14 @@ function submitWish() {
 
   // Show premium popup
   showThankYouModal();
-  renderWishes();
+
+  // Add user's wish as a floating card (highlighted)
+  createFloatingWish({ name, relation, msg }, 0, true);
 
   // Reset form
-  nameEl.value     = '';
+  nameEl.value = '';
   relationEl.value = '';
-  msgEl.value      = '';
-}
-
-function renderWishes() {
-  const list = document.getElementById('wishesList');
-  list.innerHTML = wishes
-    .map(w => `
-      <div class="wish-card">
-        <div class="wish-card-name">
-          💙 ${escHtml(w.name)}
-          ${w.relation
-            ? `<span style="color:var(--gold);font-style:italic;">· ${escHtml(w.relation)}</span>`
-            : ''}
-        </div>
-        <div class="wish-card-msg">"${escHtml(w.msg)}"</div>
-      </div>
-    `)
-    .join('');
+  msgEl.value = '';
 }
 
 /* ── 9. HTML escape helper ── */
@@ -211,3 +199,107 @@ function escHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
+
+/* ── 10. Floating wishes system ── */
+const sampleWishes = [
+  { name: 'Nguyễn Minh Anh', relation: 'Bạn học', msg: 'Chúc mừng Thọ tốt nghiệp! Chúc bạn luôn thành công!' },
+  { name: 'Trần Văn Hùng', relation: 'Bạn thân', msg: 'Chúc em vững bước trên con đường phía trước!' },
+  { name: 'Lê Thị Hương', relation: 'Bạn thân', msg: 'Tốt nghiệp rồi! Bay cao bay xa nhé bạn! 🎓' },
+  { name: 'Phạm Đức Anh', relation: 'Anh họ', msg: 'Gia đình rất tự hào về em! Chúc em thành công!' },
+  { name: 'Hoàng Thị Mai', relation: 'Chị gái thân thiết', msg: 'Chúc em gặt hái nhiều thành công trong cuộc sống!' },
+  { name: 'Vũ Quốc Bảo', relation: 'Bạn', msg: 'Chúc mừng bro! Hẹn gặp nhau trên đỉnh! 💪' },
+  { name: 'Đặng Thu Hà', relation: 'Bạn cùng trung tâm', msg: 'Chúc Thọ luôn giữ vững đam mê và nhiệt huyết!' },
+  { name: 'Ngô Thanh Tùng', relation: 'Chú', msg: 'Cháu là niềm tự hào của gia đình! Chúc cháu thành đạt!' },
+  { name: 'Bùi Lan Phương', relation: 'Chị em thân thiết', msg: 'Chúc em trai luôn mạnh mẽ, tự tin bước vào đời! ❤️' },
+  { name: 'Mai Xuân Đạt', relation: 'Bạn bè', msg: 'Chúc mừng tốt nghiệp! Tương lai tươi sáng chờ bạn!' },
+  { name: 'Trịnh Quỳnh Anh', relation: 'Bạn', msg: 'Anh giỏi lắm! 🌟' },
+  { name: 'Đỗ Hữu Nghĩa', relation: 'Bạn ngoài xã hội', msg: 'Cuối cùng cũng ra trường! Chúc ông thành công nhé!' },
+];
+
+const driftAnimations = ['wishDrift1', 'wishDrift2', 'wishDrift3', 'wishDrift4', 'wishDrift5'];
+const floatingPositions = [];
+
+/**
+ * Create a floating wish card on the page.
+ * @param {Object} wish — { name, relation, msg }
+ * @param {number} delayMs — entrance delay in ms
+ * @param {boolean} isUser — true = highlight as user-submitted
+ */
+function createFloatingWish(wish, delayMs, isUser) {
+  const container = document.getElementById('floatingWishes');
+  const card = document.createElement('div');
+  card.className = 'floating-wish' + (isUser ? ' floating-wish--user' : '');
+
+  // Pick random drift animation & duration
+  const anim = driftAnimations[Math.floor(Math.random() * driftAnimations.length)];
+  const duration = 18 + Math.random() * 14; // 18–32s
+
+  // Position on the far edges to avoid central content
+  const sideIndex = floatingPositions.length;
+  const isLeftSide = (sideIndex % 2 === 0);
+
+  let left, top, attempts = 0;
+  do {
+    if (isLeftSide) {
+      left = 1 + Math.random() * 12;   // 1–13% (far left column)
+    } else {
+      left = 82 + Math.random() * 12;  // 82–94% (far right column)
+    }
+    top = 4 + Math.random() * 82;      // 4–86% vertical spread
+    attempts++;
+  } while (attempts < 40 && floatingPositions.some(p =>
+    Math.abs(p.x - left) < 10 && Math.abs(p.y - top) < 10
+  ));
+  floatingPositions.push({ x: left, y: top });
+
+  // Initial state: invisible, shifted down
+  card.style.cssText = `
+    left: ${left}%;
+    top: ${top}%;
+    opacity: 0;
+    transform: translateY(40px) scale(0.85);
+  `;
+
+  card.innerHTML = `
+    <div class="floating-wish-name">
+      💙 ${escHtml(wish.name)}
+      ${wish.relation
+      ? `<span style="color:var(--gold);font-style:italic;">· ${escHtml(wish.relation)}</span>`
+      : ''}
+    </div>
+    <div class="floating-wish-msg">"${escHtml(wish.msg)}"</div>
+  `;
+
+  container.appendChild(card);
+
+  // Animate entrance after delay, then start drift
+  setTimeout(() => {
+    const finalOpacity = isUser ? 0.92 : (0.65 + Math.random() * 0.15);
+    card.style.transition = 'opacity 1s ease, transform 1s ease';
+    card.style.opacity = String(finalOpacity);
+    card.style.transform = 'translateY(0) scale(1)';
+
+    // After entrance transition, switch to continuous drift
+    setTimeout(() => {
+      card.style.transition = '';
+      card.style.animation = `${anim} ${duration}s ease-in-out infinite`;
+    }, 1100);
+  }, delayMs);
+}
+
+let floatingWishesStarted = false;
+
+/** Spawn all sample wishes as floating cards */
+function initFloatingWishes() {
+  if (floatingWishesStarted) return;
+  floatingWishesStarted = true;
+  sampleWishes.forEach((wish, i) => {
+    createFloatingWish(wish, i * 350, false); // stagger 350ms each
+  });
+}
+
+// Auto-launch floating wishes after 3s as fallback
+// (in case envelope was already opened or user skipped it)
+setTimeout(() => {
+  if (!floatingWishesStarted) initFloatingWishes();
+}, 3000);
