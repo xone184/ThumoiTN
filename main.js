@@ -127,7 +127,7 @@ function closeThankYouModal(e) {
 /* ── 7. Google Sheets endpoint ── */
 // HƯỚNG DẪN: Thay URL bên dưới bằng URL từ Apps Script sau khi deploy.
 // Xem file SETUP_GSHEET.md để biết cách tạo Apps Script.
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-b7MUXUpukd0LVkUZUbVsy2Se3FDLuydpQwnxs7ScqvhGL2Hs3uue28tQfm9BWR4JWw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHv2JdjDdC7ghVnQsIWs4It7oduMxAL9REQyhbiZmvTdOYeek-6jG3NC8GdVRZFhOagA/exec';
 
 function sendToSheet(data) {
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) return;
