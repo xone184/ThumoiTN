@@ -127,7 +127,7 @@ function closeThankYouModal(e) {
 /* ── 7. Google Sheets endpoint ── */
 // HƯỚNG DẪN: Thay URL bên dưới bằng URL từ Apps Script sau khi deploy.
 // Xem file SETUP_GSHEET.md để biết cách tạo Apps Script.
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3QQ_4prrHu1TsMFw3SGtVI5-zjjppwRxV2MWAs_Xi0E5h5IvqSA0T-0QIaJnJx6WAMw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-b7MUXUpukd0LVkUZUbVsy2Se3FDLuydpQwnxs7ScqvhGL2Hs3uue28tQfm9BWR4JWw/exec';
 
 function sendToSheet(data) {
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) return;
@@ -147,10 +147,12 @@ function submitWish() {
   const nameEl = document.getElementById('wishName');
   const relationEl = document.getElementById('wishRelation');
   const msgEl = document.getElementById('wishMsg');
+  const rsvpEl = document.querySelector('input[name="rsvp"]:checked');
 
   const name = nameEl.value.trim();
   const relation = relationEl.value.trim();
   const msg = msgEl.value.trim();
+  const rsvp = rsvpEl ? rsvpEl.value : 'Có';
 
   // Validation
   if (!name || !msg) {
@@ -176,6 +178,7 @@ function submitWish() {
     timestamp: new Date().toLocaleString('vi-VN'),
     name,
     relation,
+    rsvp,
     msg,
   });
 

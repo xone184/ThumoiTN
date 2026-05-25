@@ -5,9 +5,9 @@ Link: https://docs.google.com/spreadsheets/d/1yM8c9jN-eopB_TJHR-0u3UPHf0fwv3aZfE
 
 ## Bước 2 — Tạo tiêu đề cột (dòng đầu tiên)
 Trong Sheet, nhập vào 4 ô đầu tiên của dòng 1:
-| A | B | C | D |
-|---|---|---|---|
-| Thời gian | Họ và tên | Mối quan hệ | Lời chúc |
+| A | B | C | D | E |
+|---|---|---|---|---|
+| Thời gian | Họ và tên | Mối quan hệ | Xác nhận | Lời chúc |
 
 ## Bước 3 — Mở Apps Script
 1. Trên thanh menu của Sheet, chọn **Extensions (Tiện ích mở rộng) → Apps Script**
@@ -26,6 +26,7 @@ function doPost(e) {
       data.timestamp || new Date().toLocaleString('vi-VN'),
       data.name     || '',
       data.relation || '',
+      data.rsvp     || '',
       data.msg      || '',
     ]);
 
@@ -60,4 +61,4 @@ Thay bằng URL vừa copy ở Bước 5.
 
 ## Lưu ý
 - Mỗi lần chỉnh sửa code Apps Script, bạn cần **Deploy mới** (New deployment) để cập nhật.
-- Dữ liệu sẽ được ghi vào Sheet theo thứ tự: Thời gian | Họ tên | Quan hệ | Lời chúc.
+- Dữ liệu sẽ được ghi vào Sheet theo thứ tự: Thời gian | Họ tên | Quan hệ | Xác nhận | Lời chúc.
