@@ -117,7 +117,6 @@ function showThankYouModal() {
 }
 
 function closeThankYouModal(e) {
-  // If clicking overlay backdrop (not the card), close
   if (e && e.target !== document.getElementById('thankYouModal')) return;
   const modal = document.getElementById('thankYouModal');
   modal.classList.remove('active');
@@ -125,8 +124,6 @@ function closeThankYouModal(e) {
 }
 
 /* ── 7. Google Sheets endpoint ── */
-// HƯỚNG DẪN: Thay URL bên dưới bằng URL từ Apps Script sau khi deploy.
-// Xem file SETUP_GSHEET.md để biết cách tạo Apps Script.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHv2JdjDdC7ghVnQsIWs4It7oduMxAL9REQyhbiZmvTdOYeek-6jG3NC8GdVRZFhOagA/exec';
 
 function sendToSheet(data) {
