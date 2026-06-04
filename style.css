@@ -774,8 +774,10 @@ body {
    RESPONSIVE
 ════════════════════════════════════════ */
 @media (max-width: 640px) {
-  .header-banner        { padding: 24px 24px 20px; gap: 16px; }
-  .header-text .invitation-label { font-size: 1.3rem; }
+  .header-banner        { flex-direction: column; padding: 28px 16px 20px; gap: 12px; text-align: center; }
+  .logo-wrap            { width: 72px; height: 72px; margin: 0 auto; }
+  .header-text .university-name { white-space: normal; font-size: 0.75rem; line-height: 1.4; margin-bottom: 8px; }
+  .header-text .invitation-label { font-size: 1.35rem; }
   .main-card            { padding: 32px 22px 28px; }
   .hero                 { grid-template-columns: 1fr; gap: 36px; }
   .photo-frame          { max-width: 220px; margin: 0 auto; }
