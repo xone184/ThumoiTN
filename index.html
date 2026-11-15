@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thư Mời Tham Dự Lễ Tốt Nghiệp – Ma Văn Thọ</title>
+  <title>Thư Mời Tham Dự Lễ Tốt Nghiệp – Hà Mai Hương</title>
 
   <!-- Google Fonts -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
 
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -16,7 +16,7 @@
   <meta http-equiv="Expires" content="0">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 
 <body>
@@ -43,34 +43,43 @@
           <!-- Letter peeking out -->
           <div class="env-letter">
             <div class="env-letter-title">Thư Mời Tham Dự</div>
-            <div class="env-letter-sub">Lễ Tốt Nghiệp · Ma Văn Thọ</div>
+            <div class="env-letter-sub">Lễ Tốt Nghiệp · Hà Mai Hương</div>
           </div>
         </div>
 
         <!-- Flap -->
         <div class="env-flap">
           <svg viewBox="0 0 340 110" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-            <polygon points="0,0 340,0 170,110" fill="url(#flapGrad)" stroke="rgba(0,123,168,0.18)" stroke-width="1" />
+            <polygon points="0,0 340,0 170,110" fill="url(#flapGrad)" stroke="rgba(225,160,185,0.22)"
+              stroke-width="1" />
             <defs>
               <linearGradient id="flapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ddf0f9" />
-                <stop offset="100%" stop-color="#c0e4f2" />
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="50%" stop-color="#FFF6F9" />
+                <stop offset="100%" stop-color="#FDEBF2" />
               </linearGradient>
             </defs>
           </svg>
         </div>
 
         <!-- Wax seal -->
-        <svg class="env-seal" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="24" r="22" fill="#C9A84C" />
-          <circle cx="24" cy="24" r="18" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1" />
-          <text x="24" y="20" text-anchor="middle" fill="white" font-size="7" font-family="serif"
-            font-weight="700">TN</text>
-          <text x="24" y="30" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="5.5"
+        <svg class="env-seal" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#EAA7BD" />
+              <stop offset="100%" stop-color="#D486A0" />
+            </linearGradient>
+          </defs>
+          <circle cx="26" cy="26" r="24" fill="url(#sealGrad)" />
+          <circle cx="26" cy="26" r="19.5" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1"
+            stroke-dasharray="2,2" />
+          <text x="26" y="22" text-anchor="middle" fill="white" font-size="8.5" font-family="serif"
+            font-weight="700">MH</text>
+          <text x="26" y="33" text-anchor="middle" fill="rgba(255,255,255,0.92)" font-size="6"
             font-family="sans-serif">2026</text>
         </svg>
 
-        <div class="env-hint">✦ Nhấn để mở thư ✦</div>
+        <div class="env-hint">✿ Nhấn để mở thiệp hồng ✿</div>
       </div>
     </div>
   </div><!-- /#envelope-overlay -->
@@ -82,7 +91,6 @@
   <div class="bg-layer"></div>
   <div class="bg-ornament"></div>
   <div id="particles"></div><!-- JS injects floating dots here -->
-  <div id="floatingWishes" class="floating-wishes-layer"></div>
 
 
   <!-- ══════════════════════════════════════
@@ -92,12 +100,13 @@
 
     <!-- ── HEADER ── -->
     <div class="header-banner reveal">
+      <div class="header-floral-bg"></div>
       <div class="logo-wrap">
-        <img src="pictures/logo.png" alt="Logo HUNRE" style="width:100%;height:100%;object-fit:cover;">
+        <img src="pictures/logo.png" alt="Logo Trường Đại học Y - Dược, Đại học Thái Nguyên">
       </div>
       <div class="header-text">
-        <div class="university-name">Đại học Tài nguyên và Môi trường Hà Nội</div>
-        <div class="invitation-label">Thư Mời Tham Dự<br><span>Lễ Tốt Nghiệp</span></div>
+        <div class="university-name">Trường Đại học Y - Dược, Đại học Thái Nguyên</div>
+        <div class="invitation-label">Thư Mời Tham Dự<br><span>Lễ Tốt Nghiệp Năm 2026</span></div>
       </div>
     </div>
 
@@ -112,13 +121,15 @@
 
         <!-- Photo column -->
         <div class="photo-col reveal">
-          <div style="position:relative;">
+          <div class="photo-outer">
             <div class="photo-frame-border"></div>
+            <div class="photo-corner photo-corner-tl">✿</div>
+            <div class="photo-corner photo-corner-br">✿</div>
             <div class="photo-frame">
-              <img src="pictures/Dai dien.jpg" alt="Ma Văn Thọ" style="width:100%;height:100%;object-fit:cover;">
+              <img src="pictures/Dai dien.jpg" alt="Hà Mai Hương" class="avatar-img">
             </div>
           </div>
-          <div class="photo-badge">Khóa DH12 · 2026</div>
+          <div class="photo-badge">✿ Cử Nhân Điều Dưỡng · 2026 ✿</div>
         </div>
 
         <!-- Text column -->
@@ -126,33 +137,67 @@
 
           <!-- Slogan -->
           <div class="slogan-block">
-            <div class="slogan-label">✦</div>
+            <div class="slogan-label">✿ Thanh Xuân Rực Rỡ ✿</div>
             <div class="slogan-text">
-              "Tri thức là hành trang,<br>
-              tốt nghiệp là khởi đầu<br>
-              của những chân trời mới."
+              "Khép lại những năm tháng giảng đường đầy ắp kỷ niệm,<br>
+              khoác lên mình tấm áo cử nhân cùng trái tim yêu thương —<br>
+              khởi đầu hành trình mới dịu dàng và rạng rỡ."
             </div>
           </div>
 
           <!-- Name & details -->
-          <div class="greeting-intro">✦ Trân trọng kính mời Quý vị đến dự Lễ Tốt nghiệp của:</div>
+          <div class="greeting-intro">✿ Trân trọng kính mời Mọi người đến dự Lễ Tốt nghiệp của:</div>
           <div class="honoree-name">
-            Ma Văn Thọ<em><br>Cử nhân Đại học</em>
+            Hà Mai Hương
+            <em>Cử nhân Điều dưỡng</em>
           </div>
-          <div class="detail-line" style="margin-top:10px;">
-            <strong>Tại:</strong> Trường Đại học Tài nguyên và Môi trường Hà Nội
+
+          <div class="detail-pill-group">
+            <div class="detail-line">
+              <span class="detail-dot">❀</span>
+              <strong>Trường:</strong> Trường Đại học Y - Dược, Đại học Thái Nguyên
+            </div>
+            <div class="detail-line">
+              <span class="detail-dot">❀</span>
+              <strong>Ngành học:</strong> Cử nhân Điều dưỡng
+            </div>
           </div>
-          <div class="detail-line"><strong>Khóa:</strong> DH12</div>
 
           <!-- Invitation text -->
           <div class="invite-text">
-            Sự hiện diện của Quý vị là niềm vinh hạnh và là nguồn động viên vô giá đối với tân cử nhân cùng gia đình
-            trong ngày lễ trọng đại này.<br>
-            Xin trân trọng kính đón!
+            Sự hiện diện và những lời chúc phúc của Quý vị, gia đình cùng bạn bè thân thương là niềm vinh hạnh và món
+            quà ý nghĩa nhất dành cho <strong>Mai Hương</strong> trong ngày lễ trọng đại này.<br>
+            <span class="invite-sign">Rất hân hạnh được đón tiếp! 🌸</span>
           </div>
 
         </div>
       </div><!-- /.hero -->
+
+      <!-- ── COUNTDOWN STRIP ── -->
+      <div class="countdown-wrap reveal">
+        <div class="countdown-label">✿ Đếm ngược đến giờ nhận bằng tốt nghiệp (14h00 · 28/11/2026) ✿</div>
+        <div class="countdown-grid" id="countdownGrid">
+          <div class="cd-item">
+            <span class="cd-num" id="cdDays">00</span>
+            <span class="cd-unit">Ngày</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-item">
+            <span class="cd-num" id="cdHours">00</span>
+            <span class="cd-unit">Giờ</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-item">
+            <span class="cd-num" id="cdMins">00</span>
+            <span class="cd-unit">Phút</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-item">
+            <span class="cd-num" id="cdSecs">00</span>
+            <span class="cd-unit">Giây</span>
+          </div>
+        </div>
+      </div>
 
       <!-- ── INFO BOXES ── -->
       <div class="info-grid reveal">
@@ -165,16 +210,19 @@
             </svg>
           </div>
           <div>
-            <div class="info-label">Thời gian</div>
-            <div class="info-value">7h15 – 12h<br>Sáng thứ 7 – 20/06/2026</div>
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=L%E1%BB%85+T%E1%BB%91t+Nghi%E1%BB%87p+-+Ma+V%C4%83n+Th%E1%BB%8D&dates=20260620T001500Z/20260620T050000Z&details=Tr%C3%A2n+tr%E1%BB%8Dng+k%C3%ADnh+m%E1%BB%9Di+Qu%C3%BD+v%E1%BB%8B+%C4%91%E1%BA%BFn+d%E1%BB%B1+L%E1%BB%85+T%E1%BB%91t+nghi%E1%BB%87p+c%E1%BB%A7a+Ma+V%C4%83n+Th%E1%BB%8D.&location=Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+T%C3%A0i+nguy%C3%AAn+v%C3%A0+M%C3%B4i+tr%C6%B0%E1%BB%9Dng+H%C3%A0+N%E1%BB%99i"
+            <div class="info-label">Thời gian nhận tốt nghiệp</div>
+            <div class="info-value">
+              14h00 – 17h00<br>
+              <span class="info-sub">Chiều Thứ Bảy · Ngày 28/11/2026</span>
+            </div>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=L%E1%BB%85+T%E1%BB%91t+Nghi%E1%BB%87p+-+H%C3%A0+Mai+H%C6%B0%C6%A1ng&dates=20261128T070000Z/20261128T100000Z&details=Tr%C3%A2n+tr%E1%BB%8Dng+k%C3%ADnh+m%E1%BB%9Di+Qu%C3%BD+v%E1%BB%8B+%C4%91%E1%BA%BFn+d%E1%BB%B1+L%E1%BB%85+T%E1%BB%91t+nghi%E1%BB%87p+C%E1%BB%AD+nh%C3%A2n+%C4%90i%E1%BB%81u+d%C6%B0%E1%BB%A1ng+c%E1%BB%A7a+H%C3%A0+Mai+H%C6%B0%C6%A1ng+%2814h00+-+17h00%29.&location=Nh%C3%A0+h%C3%A1t+Ca%2C+M%C3%BAa%2C+Nh%E1%BA%A1c+Qu%E1%BB%91c+gia+Vi%E1%BB%87t+Nam+%28Trung+t%C3%A2m+Ngh%E1%BB%87+thu%E1%BA%ADt+Vi%E1%BB%87t+B%E1%BA%AFc%29+-+S%E1%BB%91+118+%C4%90%C6%B0%E1%BB%9Dng+Ho%C3%A0ng+V%C4%83n+Th%E1%BB%A5%2C+P.+Phan+%C4%90%C3%ACnh+Ph%C3%B9ng%2C+Th%C3%A1i+Nguy%C3%AAn"
               target="_blank" rel="noopener noreferrer" class="calendar-btn">
-              + Thêm vào lịch
+              + Thêm vào lịch Google
             </a>
           </div>
         </div>
 
-        <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+T%C3%A0i+nguy%C3%AAn+v%C3%A0+M%C3%B4i+tr%C6%B0%E1%BB%9Dng+H%C3%A0+N%E1%BB%99i/@21.0467103,105.7604163,815m/data=!3m1!1e3!4m6!3m5!1s0x313454c3ce577141:0xb1a1ac92701777bc!8m2!3d21.0470486!4d105.7624371!16s%2Fg%2F11b6dylw9c?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+        <a href="https://www.google.com/maps/place/Trung+t%C3%A2m+Ngh%E1%BB%87+thu%E1%BA%ADt+Vi%E1%BB%87t+B%E1%BA%AFc/@21.5914607,105.8290994,701m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3135271e39aec063:0x9cef621b5b7bca66!8m2!3d21.5914607!4d105.8316743!16s%2Fg%2F1hc329y4b?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D"
           target="_blank" rel="noopener noreferrer" class="info-box map-card-link">
           <div class="info-icon">
             <svg viewBox="0 0 24 24">
@@ -183,15 +231,15 @@
             </svg>
           </div>
           <div>
-            <div class="info-label">Địa điểm</div>
+            <div class="info-label">Địa điểm tổ chức</div>
             <div class="info-value">
-              Hội trường lớn, cơ sở 1<br>
-              <span style="font-size:0.87rem;font-weight:400;color:#2C4E60;display:inline-block;margin-top:2px;">
-                Trường Đại học Tài nguyên và Môi trường Hà Nội
+              Nhà hát Ca, Múa, Nhạc Quốc gia Việt Nam<br>
+              <span class="info-sub">
+                (Trung tâm Nghệ thuật Việt Bắc)<br>
+                Số 118, Đường Hoàng Văn Thụ, P. Phan Đình Phùng, Thái Nguyên
               </span>
-              <span class="map-hint"
-                style="display:block;font-size:0.72rem;color:var(--mid-teal);font-weight:600;margin-top:5px;text-transform:uppercase;letter-spacing:0.04em;">
-                📍 Chỉ đường Google Maps ↗
+              <span class="map-hint">
+                📍 Xem chỉ đường trên Google Maps ↗
               </span>
             </div>
           </div>
@@ -199,39 +247,41 @@
 
         <div class="info-box">
           <div class="info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
+            <svg viewBox="0 0 24 24">
               <path
                 d="M20.38 3.46L16 2a8.5 8.5 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
             </svg>
           </div>
           <div>
             <div class="info-label">Trang phục (Dress Code)</div>
-            <div class="info-value" style="font-size:0.95rem;">
-              Trang phục lịch sự<br>
-              <span
-                style="font-size:0.87rem;font-weight:500;color:var(--text-mid);display:inline-block;margin-top:2px;">
-                Ưu tiên tone màu: <strong style="color:var(--deep-teal);">Trắng - Xanh</strong>
+            <div class="info-value">
+              Trang phục lịch sự, thanh lịch<br>
+              <span class="info-sub">
+                Khuyến khích tone màu: <strong style="color:var(--rose-deep);">Trắng · Hồng nhạt · Kem</strong>
               </span>
+              <div class="dress-swatches">
+                <span class="swatch" style="background:#FFFFFF;" title="Trắng"></span>
+                <span class="swatch" style="background:#F8C8D8;" title="Hồng phấn"></span>
+                <span class="swatch" style="background:#FDF3EB;" title="Kem / Beige"></span>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="info-box">
           <div class="info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
+            <svg viewBox="0 0 24 24">
               <path
                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
           </div>
           <div>
-            <div class="info-label">Liên hệ</div>
+            <div class="info-label">Liên hệ đón tiếp</div>
             <div class="info-value">
-              0828 239 451<br>
-              <a href="tel:0828239451" class="map-hint"
-                style="display:block;font-size:0.72rem;color:var(--mid-teal);font-weight:600;margin-top:5px;text-transform:uppercase;letter-spacing:0.04em;text-decoration:none;">
-                📞 Gọi điện ngay ↗
+              Hà Mai Hương<br>
+              <span class="info-sub">Tân Cử nhân Điều dưỡng · TUMP</span>
+              <a href="tel:0355359570" class="map-hint" style="text-decoration:none;">
+                📞 Liên hệ trực tiếp: 0355 359 570 ↗
               </a>
             </div>
           </div>
@@ -241,84 +291,87 @@
 
       <!-- ── MAP ── -->
       <div class="map-section reveal">
-        <div class="section-heading">✦ Bản đồ địa điểm</div>
+        <div class="section-heading">✿ Bản đồ chỉ đường</div>
         <div class="map-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d815.0!2d105.7613267!3d21.0470486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454c3ce577141%3A0xb1a1ac92701777bc!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUw6BpIG5ndXnDqm4gdMOgaSBNw7RpIHRyxrDhu51uZyBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1716000000000!5m2!1svi!2s"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1855.17!2d105.8290994!3d21.5914607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135271e39aec063%3A0x9cef621b5b7bca66!2zVHJ1bmcgdMOibSBOZ2jhu4cgdGh14bqtdCBWaeG7h3QgQuG6r2M!5e0!3m2!1svi!2s!4v1731680000000!5m2!1svi!2s"
             loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            title="Bản đồ Đại học Tài nguyên và Môi trường Hà Nội">
+            title="Bản đồ Trung tâm Nghệ thuật Việt Bắc - Nhà hát Ca, Múa, Nhạc Quốc gia Việt Nam">
           </iframe>
-
+          <a href="https://www.google.com/maps/place/Trung+t%C3%A2m+Ngh%E1%BB%87+thu%E1%BA%ADt+Vi%E1%BB%87t+B%E1%BA%AFc/@21.5914607,105.8290994,701m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3135271e39aec063:0x9cef621b5b7bca66!8m2!3d21.5914607!4d105.8316743!16s%2Fg%2F1hc329y4b?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank" rel="noopener noreferrer" class="map-overlay-label">
+            <strong>📍 Trung tâm Nghệ thuật Việt Bắc</strong>
+            Số 118 Hoàng Văn Thụ, P. Phan Đình Phùng, Thái Nguyên ↗
+          </a>
         </div>
       </div><!-- /.map-section -->
 
       <!-- ── HONOUR NOTE ── -->
       <div class="honour-note reveal">
         <p>
-          Gia đình chúng tôi <span class="honour-accent">rất hân hạnh được đón tiếp</span> Quý vị<br>
+          <strong>Mai Hương</strong> cùng gia đình <span class="honour-accent">rất hân hạnh được đón tiếp</span> Quý
+          vị<br>
           và xin gửi tới Quý vị lời chúc
           <span class="honour-accent">sức khoẻ, hạnh phúc &amp; bình an</span>.<br>
-          Sự hiện diện của Quý vị sẽ làm cho ngày vui thêm phần trọn vẹn.
+          Sự hiện diện của Quý vị sẽ làm cho ngày vui thêm phần trọn vẹn và đáng nhớ! 🌸
         </p>
       </div>
 
       <!-- ── WISH FORM ── -->
       <div class="wish-section reveal">
-        <div class="section-heading">✦ Gửi lời chúc mừng</div>
+        <div class="section-heading">✿ Gửi lời chúc mừng &amp; Xác nhận tham dự</div>
         <div class="wish-form-wrap">
 
           <p class="wish-intro">
-            Kính mong Quý vị để lại những lời chúc tốt đẹp nhất<br>
-            dành cho tân cử nhân <strong style="font-style:normal;color:var(--deep-teal);">Ma Văn Thọ</strong>
-            nhân ngày trọng đại này 🎓
+            Hãy để lại những lời chúc yêu thương nhất dành cho tân Cử nhân Điều dưỡng<br>
+            <strong style="font-style:normal;color:var(--rose-deep);">Mai Hương</strong>
+            nhân ngày tốt nghiệp trọng đại này nhé 🌸🎓
           </p>
 
           <!-- Form fields -->
           <div id="wishFormInner">
             <div class="wish-fields">
               <div class="field-wrap">
-                <label for="wishName">Họ và tên</label>
-                <input type="text" id="wishName" placeholder="Nguyễn Văn A…" autocomplete="off">
+                <label for="wishName">Họ và tên của bạn</label>
+                <input type="text" id="wishName" placeholder="Nguyễn Thu Trang…" autocomplete="off">
               </div>
               <div class="field-wrap">
                 <label for="wishRelation">Mối quan hệ</label>
-                <input type="text" id="wishRelation" placeholder="Bạn bè, Gia đình…" autocomplete="off">
+                <input type="text" id="wishRelation" placeholder="Gia đình, Bạn thân, Đồng nghiệp…" autocomplete="off">
               </div>
               <div class="field-wrap field-full">
-                <label>Xác nhận tham dự</label>
+                <label>Xác nhận tham dự (14h00 – 17h00, 28/11/2026)</label>
                 <div class="rsvp-options">
                   <label class="rsvp-radio">
                     <input type="radio" name="rsvp" value="Có" checked>
-                    Chắc chắn tham dự
+                    <span>🌸 Chắc chắn tham dự</span>
                   </label>
                   <label class="rsvp-radio">
                     <input type="radio" name="rsvp" value="Sẽ cố gắng">
-                    Sẽ cố gắng
+                    <span>✨ Sẽ cố gắng sắp xếp</span>
                   </label>
                   <label class="rsvp-radio">
                     <input type="radio" name="rsvp" value="Không">
-                    Rất tiếc không thể
+                    <span>💌 Gửi lời chúc từ xa</span>
                   </label>
                 </div>
               </div>
               <div class="field-wrap field-full">
-                <label for="wishMsg">Lời chúc</label>
-                <textarea id="wishMsg" rows="4" placeholder="Chúc mừng Thọ đã tốt nghiệp! Chúc bạn…"></textarea>
+                <label for="wishMsg">Lời chúc gửi tới Mai Hương</label>
+                <textarea id="wishMsg" rows="4"
+                  placeholder="Chúc mừng Mai Hương đã tốt nghiệp Cử nhân Điều dưỡng! Chúc cô gái luôn xinh đẹp, rạng rỡ và…"></textarea>
               </div>
             </div>
-            <button class="wish-submit" onclick="submitWish()">✦ Gửi lời chúc ✦</button>
+            <button class="wish-submit" onclick="submitWish()">✿ Gửi lời chúc yêu thương ✿</button>
           </div>
 
           <!-- Success message (shown after submit) -->
           <div class="wish-success" id="wishSuccess">
-            <div class="success-icon">🎉</div>
+            <div class="success-icon">🌸</div>
             <p>Xin trân trọng cảm ơn lời chúc của Quý vị!
-              <small>Lời chúc đã được gửi thành công.</small>
+              <small>Lời chúc đã được gửi tới Mai Hương thành công.</small>
             </p>
           </div>
-
-          <!-- Rendered wish cards -->
-          <div class="wishes-list" id="wishesList"></div>
 
         </div>
       </div><!-- /.wish-section -->
@@ -327,13 +380,13 @@
 
     <!-- ── FOOTER ── -->
     <div class="footer-strip reveal">
-      <div class="left">© 2026 · Lễ Tốt Nghiệp Ma Văn Thọ</div>
+      <div class="left">© 2026 · Lễ Tốt Nghiệp Hà Mai Hương</div>
       <div class="center">
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-      <div class="right">HUNRE · Khóa DH12</div>
+      <div class="right">Cử Nhân Điều Dưỡng · ĐH Y - Dược Thái Nguyên</div>
     </div>
 
   </div><!-- /#mainPage -->
@@ -343,17 +396,18 @@
   <div id="thankYouModal" class="ty-modal-overlay" onclick="closeThankYouModal(event)">
     <div class="ty-modal-card">
       <div class="ty-confetti-area" id="tyConfetti"></div>
-      <div class="ty-icon">🎓</div>
-      <h2 class="ty-title">Trân trọng cảm ơn!</h2>
-      <p class="ty-sub">Lời chúc của Quý vị đã được ghi nhận thành công.<br>
-        <strong>Ma Văn Thọ</strong> cùng gia đình xin trân trọng cảm ơn tình cảm của Quý vị! 🎉
+      <div class="ty-icon">🌸</div>
+      <h2 class="ty-title">Cảm ơn tình cảm của bạn!</h2>
+      <p class="ty-sub">Lời chúc tốt đẹp của Quý vị đã được ghi nhận.<br>
+        <strong>Hà Mai Hương</strong> cùng gia đình xin trân trọng cảm ơn và hẹn gặp Quý vị vào <strong>14h00 – 17h00
+          ngày 28/11/2026</strong>! 💖
       </p>
-      <button class="ty-close-btn" onclick="closeThankYouModal()">✦ Đóng ✦</button>
+      <button class="ty-close-btn" onclick="closeThankYouModal()">✿ Đóng ✿</button>
     </div>
   </div>
 
   <!-- JavaScript (loaded last so DOM is ready) -->
-  <script src="main.js"></script>
+  <script src="main.js?v=9"></script>
 
 </body>
 

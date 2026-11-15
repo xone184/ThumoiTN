@@ -1,16 +1,17 @@
 /* ════════════════════════════════════════
-   main.js — Thư Mời Tốt Nghiệp · Ma Văn Thọ
+   main.js — Thư Mời Tốt Nghiệp · Hà Mai Hương
 ════════════════════════════════════════ */
 
-/* ── 1. Floating background particles ── */
+/* ── 1. Floating background particles (Pink & Pearl) ── */
 (function spawnParticles() {
   const container = document.getElementById('particles');
-  const colors = ['#5BB8D4', '#007BA8', '#C9A84C', '#C8ECF5'];
+  if (!container) return;
+  const colors = ['#FDE6EE', '#FCE2EC', '#FFF0F5', '#F5D0DD', '#FDF2F6'];
 
-  for (let i = 0; i < 18; i++) {
+  for (let i = 0; i < 20; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
-    const size = Math.random() * 5 + 3;
+    const size = Math.random() * 6 + 3;
     p.style.cssText = [
       `width:${size}px`,
       `height:${size}px`,
@@ -24,25 +25,53 @@
   }
 })();
 
-/* ── 2. Falling petals on envelope screen ── */
+/* ── 2. Falling Sakura / Rose petals on envelope screen ── */
 (function spawnPetals() {
   const petalsContainer = document.getElementById('petals-container');
-  const colors = ['#C9A84C', '#5BB8D4', '#007BA8', '#E8C97A', '#C8ECF5'];
+  if (!petalsContainer) return;
+  const colors = ['#FFF0F5', '#FCE2EC', '#FDE8F0', '#F8D2DF', '#FFF8FA'];
 
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 18; i++) {
     const p = document.createElement('div');
     p.className = 'petal';
     p.style.cssText = [
       `background:${colors[i % colors.length]}`,
       `left:${Math.random() * 100}vw`,
-      `animation-duration:${4 + Math.random() * 5}s`,
+      `animation-duration:${4.5 + Math.random() * 5}s`,
       `animation-delay:${Math.random() * 4}s`,
     ].join(';');
     petalsContainer.appendChild(p);
   }
 })();
 
-/* ── 3. Open envelope animation ── */
+/* ── 3. Countdown to Graduation (14:00 on 28/11/2026) ── */
+(function initCountdown() {
+  const targetTime = new Date('2026-11-28T14:00:00+07:00').getTime();
+  const dEl = document.getElementById('cdDays');
+  const hEl = document.getElementById('cdHours');
+  const mEl = document.getElementById('cdMins');
+  const sEl = document.getElementById('cdSecs');
+  if (!dEl || !hEl || !mEl || !sEl) return;
+
+  function updateClock() {
+    const now = Date.now();
+    const diff = Math.max(0, targetTime - now);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    dEl.textContent = String(days).padStart(2, '0');
+    hEl.textContent = String(hours).padStart(2, '0');
+    mEl.textContent = String(mins).padStart(2, '0');
+    sEl.textContent = String(secs).padStart(2, '0');
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+})();
+
+/* ── 4. Open envelope animation ── */
 function openEnvelope() {
   const wrap = document.getElementById('envWrap');
   if (wrap.dataset.opened) return;   // prevent double-click
@@ -56,13 +85,10 @@ function openEnvelope() {
 
     // Start scroll-reveal after page fades in
     setTimeout(initReveal, 200);
-
-    // Launch floating wishes after a short delay
-    setTimeout(initFloatingWishes, 1000);
   }, 1400);
 }
 
-/* ── 4. Scroll-reveal with IntersectionObserver ── */
+/* ── 5. Scroll-reveal with IntersectionObserver ── */
 function initReveal() {
   const elements = document.querySelectorAll('.reveal');
 
@@ -83,9 +109,9 @@ function initReveal() {
   });
 }
 
-/* ── 5. Confetti burst ── */
+/* ── 6. Confetti burst ── */
 function launchConfetti(containerId) {
-  const colors = ['#C9A84C', '#007BA8', '#5BB8D4', '#E8C97A', '#00506E', '#C8ECF5'];
+  const colors = ['#FCE2EC', '#F5C6D6', '#EAA7BD', '#FFF0F5', '#F8D8E3', '#FFFFFF'];
   const parent = containerId
     ? (document.getElementById(containerId) || document.body)
     : document.body;
@@ -108,7 +134,7 @@ function launchConfetti(containerId) {
   }
 }
 
-/* ── 6. Thank-you popup ── */
+/* ── 7. Thank-you popup modal ── */
 function showThankYouModal() {
   const modal = document.getElementById('thankYouModal');
   modal.classList.add('active');
@@ -123,23 +149,20 @@ function closeThankYouModal(e) {
   document.body.style.overflow = '';
 }
 
-/* ── 7. Google Sheets endpoint ── */
+/* ── 8. Google Sheets endpoint ── */
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHv2JdjDdC7ghVnQsIWs4It7oduMxAL9REQyhbiZmvTdOYeek-6jG3NC8GdVRZFhOagA/exec';
 
 function sendToSheet(data) {
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) return;
-  // mode: 'no-cors' — response is opaque but data goes through
   fetch(APPS_SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
-  }).catch(() => { /* silent fail — data still recorded */ });
+  }).catch(() => { /* silent fail */ });
 }
 
-/* ── 8. Wish form logic ── */
-const wishes = [];
-
+/* ── 9. Wish form logic ── */
 function submitWish() {
   const nameEl = document.getElementById('wishName');
   const relationEl = document.getElementById('wishRelation');
@@ -157,8 +180,8 @@ function submitWish() {
     btn.style.animation = 'shake 0.4s ease';
     setTimeout(() => (btn.style.animation = ''), 400);
 
-    if (!name) nameEl.style.borderColor = '#e05b5b';
-    if (!msg) msgEl.style.borderColor = '#e05b5b';
+    if (!name) nameEl.style.borderColor = '#d9537f';
+    if (!msg) msgEl.style.borderColor = '#d9537f';
 
     setTimeout(() => {
       nameEl.style.borderColor = '';
@@ -166,9 +189,6 @@ function submitWish() {
     }, 1200);
     return;
   }
-
-  // Save locally
-  wishes.unshift({ name, relation, msg });
 
   // Send to Google Sheets
   sendToSheet({
@@ -179,127 +199,11 @@ function submitWish() {
     msg,
   });
 
-  // Show premium popup
+  // Show thank you modal popup
   showThankYouModal();
-
-  // Add user's wish as a floating card (highlighted)
-  createFloatingWish({ name, relation, msg }, 0, true);
 
   // Reset form
   nameEl.value = '';
   relationEl.value = '';
   msgEl.value = '';
 }
-
-/* ── 9. HTML escape helper ── */
-function escHtml(str) {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-/* ── 10. Floating wishes system ── */
-const sampleWishes = [
-  { name: 'Nguyễn Minh Anh', relation: 'Bạn học', msg: 'Chúc mừng Thọ tốt nghiệp! Chúc bạn luôn thành công!' },
-  { name: 'Trần Văn Hùng', relation: 'Bạn thân', msg: 'Chúc em vững bước trên con đường phía trước!' },
-  { name: 'Lê Thị Hương', relation: 'Bạn thân', msg: 'Tốt nghiệp rồi! Bay cao bay xa nhé bạn! 🎓' },
-  { name: 'Phạm Đức Anh', relation: 'Anh họ', msg: 'Gia đình rất tự hào về em! Chúc em thành công!' },
-  { name: 'Hoàng Thị Mai', relation: 'Chị gái thân thiết', msg: 'Chúc em gặt hái nhiều thành công trong cuộc sống!' },
-  { name: 'Vũ Quốc Bảo', relation: 'Bạn', msg: 'Chúc mừng bro! Hẹn gặp nhau trên đỉnh! 💪' },
-  { name: 'Đặng Thu Hà', relation: 'Bạn cùng trung tâm', msg: 'Chúc Thọ luôn giữ vững đam mê và nhiệt huyết!' },
-  { name: 'Ngô Thanh Tùng', relation: 'Chú', msg: 'Cháu là niềm tự hào của gia đình! Chúc cháu thành đạt!' },
-  { name: 'Bùi Lan Phương', relation: 'Chị em thân thiết', msg: 'Chúc em trai luôn mạnh mẽ, tự tin bước vào đời! ❤️' },
-  { name: 'Mai Xuân Đạt', relation: 'Bạn bè', msg: 'Chúc mừng tốt nghiệp! Tương lai tươi sáng chờ bạn!' },
-  { name: 'Trịnh Quỳnh Anh', relation: 'Bạn', msg: 'Anh giỏi lắm! 🌟' },
-  { name: 'Đỗ Hữu Nghĩa', relation: 'Bạn ngoài xã hội', msg: 'Cuối cùng cũng ra trường! Chúc ông thành công nhé!' },
-];
-
-const driftAnimations = ['wishDrift1', 'wishDrift2', 'wishDrift3', 'wishDrift4', 'wishDrift5'];
-const floatingPositions = [];
-
-/**
- * Create a floating wish card on the page.
- * @param {Object} wish — { name, relation, msg }
- * @param {number} delayMs — entrance delay in ms
- * @param {boolean} isUser — true = highlight as user-submitted
- */
-function createFloatingWish(wish, delayMs, isUser) {
-  const container = document.getElementById('floatingWishes');
-  const card = document.createElement('div');
-  card.className = 'floating-wish' + (isUser ? ' floating-wish--user' : '');
-
-  // Pick random drift animation & duration
-  const anim = driftAnimations[Math.floor(Math.random() * driftAnimations.length)];
-  const duration = 18 + Math.random() * 14; // 18–32s
-
-  // Position on the far edges to avoid central content
-  const sideIndex = floatingPositions.length;
-  const isLeftSide = (sideIndex % 2 === 0);
-
-  let left, top, attempts = 0;
-  do {
-    if (isLeftSide) {
-      left = 1 + Math.random() * 12;   // 1–13% (far left column)
-    } else {
-      left = 82 + Math.random() * 12;  // 82–94% (far right column)
-    }
-    top = 4 + Math.random() * 82;      // 4–86% vertical spread
-    attempts++;
-  } while (attempts < 40 && floatingPositions.some(p =>
-    Math.abs(p.x - left) < 10 && Math.abs(p.y - top) < 10
-  ));
-  floatingPositions.push({ x: left, y: top });
-
-  // Initial state: invisible, shifted down
-  card.style.cssText = `
-    left: ${left}%;
-    top: ${top}%;
-    opacity: 0;
-    transform: translateY(40px) scale(0.85);
-  `;
-
-  card.innerHTML = `
-    <div class="floating-wish-name">
-      💙 ${escHtml(wish.name)}
-      ${wish.relation
-      ? `<span style="color:var(--gold);font-style:italic;">· ${escHtml(wish.relation)}</span>`
-      : ''}
-    </div>
-    <div class="floating-wish-msg">"${escHtml(wish.msg)}"</div>
-  `;
-
-  container.appendChild(card);
-
-  // Animate entrance after delay, then start drift
-  setTimeout(() => {
-    const finalOpacity = isUser ? 0.92 : (0.65 + Math.random() * 0.15);
-    card.style.transition = 'opacity 1s ease, transform 1s ease';
-    card.style.opacity = String(finalOpacity);
-    card.style.transform = 'translateY(0) scale(1)';
-
-    // After entrance transition, switch to continuous drift
-    setTimeout(() => {
-      card.style.transition = '';
-      card.style.animation = `${anim} ${duration}s ease-in-out infinite`;
-    }, 1100);
-  }, delayMs);
-}
-
-let floatingWishesStarted = false;
-
-/** Spawn all sample wishes as floating cards */
-function initFloatingWishes() {
-  if (floatingWishesStarted) return;
-  floatingWishesStarted = true;
-  sampleWishes.forEach((wish, i) => {
-    createFloatingWish(wish, i * 350, false); // stagger 350ms each
-  });
-}
-
-// Auto-launch floating wishes after 3s as fallback
-// (in case envelope was already opened or user skipped it)
-setTimeout(() => {
-  if (!floatingWishesStarted) initFloatingWishes();
-}, 3000);
