@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════
-   main.js — Thư Mời Tốt Nghiệp · Hà Mai Hương
+   main.js — Thư Mời Tốt Nghiệp · Hà Thị Mai Hương
 ════════════════════════════════════════ */
 
 /* ── 1. Floating background particles (Pink & Pearl) ── */
