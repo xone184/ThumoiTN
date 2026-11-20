@@ -44,9 +44,9 @@
   }
 })();
 
-/* ── 3. Countdown to Graduation (14:00 on 28/11/2026) ── */
+/* ── 3. Countdown to Graduation (09:00 on 28/11/2026) ── */
 (function initCountdown() {
-  const targetTime = new Date('2026-11-28T14:00:00+07:00').getTime();
+  const targetTime = new Date('2026-11-28T09:00:00+07:00').getTime();
   const dEl = document.getElementById('cdDays');
   const hEl = document.getElementById('cdHours');
   const mEl = document.getElementById('cdMins');
